@@ -1,0 +1,74 @@
+#Instructions
+
+1) -->
+
+# Download and run the NodeSource setup script for Node.js 20.x
+curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+
+# Install Node.js and npm
+sudo apt-get install -y nodejs
+
+# Verify installation
+node -v
+npm -v
+
+
+2) -->
+
+# Create and navigate into your project folder
+mkdir my-proxy
+cd my-proxy
+
+# Initialize a new npm project (creates package.json)
+npm init -y
+
+# Install node-fetch (v3 is ESM-only; we'll use dynamic import)
+npm install node-fetch
+
+
+
+
+3)-->
+
+nano proxy.js     (Paste from repo proxy.js)
+
+
+
+
+4) -->
+
+# Download the latest cloudflared Debian package
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+
+# Install the package
+sudo dpkg -i cloudflared-linux-amd64.deb
+
+# Verify the installation
+cloudflared --version
+
+
+
+5)  -->
+
+
+
+un the Reverse Proxy and Start the Tunnel
+
+
+a) Start Your Reverse Proxy
+-->  node proxy.js
+
+you will see -->  Reverse proxy server running on http://localhost:8080
+
+2) Keep the proxy.js running and open new window
+
+ Start Cloudflared Tunnel
+-->  cloudflared tunnel --url http://localhost:8080
+
+
+you will see --> Your tunnel is running! Visit https://random.trycloudflare.com
+
+
+
+
+
